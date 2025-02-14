@@ -149,8 +149,48 @@ namespace Demo
             ///           Console.WriteLine($"---Employee : Name {item.Name}");
             ///
             ///   } 
-            #endregion 
             #endregion
+            #endregion
+
+            #endregion
+
+
+            #region LINQ JOin Operators [Join() , GroupJoin() ]
+
+            #region inner Join 
+           /// var Result = from D in dbContext.Departments
+           ///              join E in dbContext.Employees
+           ///              on D.DeptId equals E.DepartmentDeptId
+           ///              select new
+           ///              {
+           ///                  EmployeeId = E.Code,
+           ///                  EmployeeName = E.Name,
+           ///                  DepartmentId = D.DeptId,
+           ///                  DepartmentName = D.Name
+           ///              };
+
+          ///  Result = dbContext.Departments.Join(dbContext.Employees,
+          ///                                      D => D.DeptId,
+          ///                                      E => E.DepartmentDeptId,
+          ///                                      (D, E) => new
+          ///                                      {
+          ///                                          EmployeeId = E.Code,
+          ///                                          EmployeeName = E.Name,
+          ///                                          DepartmentId = D.DeptId,
+          ///                                          DepartmentName = D.Name
+          ///
+          ///                                      });
+          ///                  
+
+         ///  foreach (var item in Result)
+         ///  {
+         ///      Console.WriteLine($"Employee : {item.EmployeeName}  Department : {item.DepartmentName}");
+         ///  }
+
+
+            #endregion
+
+
 
             #endregion
 
