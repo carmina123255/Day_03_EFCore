@@ -1,5 +1,6 @@
 ﻿using Demo.Data;
 using Demo.Data.Models;
+using System.Data.Entity;
 
 namespace Demo
 {
@@ -77,12 +78,49 @@ namespace Demo
             ///           Console.WriteLine($"---Employee : Name {item.Name}");
             ///
             ///   }
-             
+
             #endregion
             #endregion
 
+
+            #region Eager Loading  
+            #region Example01 
+
+
+            ///  var employee = (from e in dbContext.Employees.Include("Department")
+            ///                 where e.Code == 6
+            ///                 select e).FirstOrDefault();
+            ///
+            ///  if(employee is not null)
+            ///  {
+            ///      
+            ///      Console.WriteLine($"Employee :Id {employee.Code} :: Name ={employee.Name} :: \n Department : {employee.Department?.Name ?? "Not Found "} ");
+            ///  }
+
             #endregion
 
+            #region Example 02 
+            ///  var department =( from d in dbContext.Departments.Include(D=>D.Employees)
+            ///                   where d.DeptId==10
+            ///                   select d).FirstOrDefault();
+            ///
+            ///
+            ///  if (department is not null)
+            ///  {
+            ///      Console.WriteLine($"Department : Id = {department.DeptId} :: Name =  {department.Name}");
+            ///   dbContext.Entry(department).Collection(nameof(Department.Employees)).Load();
+            ///
+            ///      foreach(var item in department.Employees)
+            ///          Console.WriteLine($"---Employee : Name {item.Name}");
+            ///
         }
+
+        #endregion 
+        #endregion
+
+
+        #endregion
+
     }
-}
+    }
+
