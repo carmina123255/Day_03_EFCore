@@ -307,34 +307,56 @@ namespace Demo
 
             #region Example 02 
 
-       ///    var Result = dbContext.Employees.GroupJoin(dbContext.Departments,
-       ///                                                    E => E.DepartmentDeptId,
-       ///                                                    D => D.DeptId,
-       ///                                                    (Employee, Departments) => new
-       ///                                                    {
-       ///                                                        Employee,
-       ///                                                        Departments = Departments.DefaultIfEmpty()
-       ///                                                    }).SelectMany(X => X.Departments, (X, Department) => new { X.Employee, Department });
-       ///
-       ///    Result = from E in dbContext.Employees
-       ///             join D in dbContext.Departments
-       ///           on E.DepartmentDeptId equals D.DeptId
-       ///           into Departments
-       ///             select new
-       ///             {
-       ///                 Employee = E,
-       ///                 Departments = Departments.DefaultIfEmpty()
-       ///             } into X
-       ///             from Department in X.Departments
-       ///             select new { X.Employee, Department };
-       ///
-       ///    foreach (var item in Result)
-       ///    {
-       ///        Console.WriteLine($"EmployeeName : {item.Employee.Name} , DepartmentName :{item.Department?.Name??"Not Found "}");
-       ///    }
-       ///
+            ///    var Result = dbContext.Employees.GroupJoin(dbContext.Departments,
+            ///                                                    E => E.DepartmentDeptId,
+            ///                                                    D => D.DeptId,
+            ///                                                    (Employee, Departments) => new
+            ///                                                    {
+            ///                                                        Employee,
+            ///                                                        Departments = Departments.DefaultIfEmpty()
+            ///                                                    }).SelectMany(X => X.Departments, (X, Department) => new { X.Employee, Department });
+            ///
+            ///    Result = from E in dbContext.Employees
+            ///             join D in dbContext.Departments
+            ///           on E.DepartmentDeptId equals D.DeptId
+            ///           into Departments
+            ///             select new
+            ///             {
+            ///                 Employee = E,
+            ///                 Departments = Departments.DefaultIfEmpty()
+            ///             } into X
+            ///             from Department in X.Departments
+            ///             select new { X.Employee, Department };
+            ///
+            ///    foreach (var item in Result)
+            ///    {
+            ///        Console.WriteLine($"EmployeeName : {item.Employee.Name} , DepartmentName :{item.Department?.Name??"Not Found "}");
+            ///    }
+            ///
             #endregion
 
+            #endregion
+
+            #region Cross JOin 
+
+         ///  var Result = from E in dbContext.Employees
+         ///               from D in dbContext.Departments
+         ///               select new
+         ///               {
+         ///                   Department = D,
+         ///                   Employee = E
+         ///               };
+
+        ///    Result = dbContext.Employees.SelectMany(E => dbContext.Departments.Select( D => new
+        ///    {
+        ///       Department=D,
+        ///       Employee=E
+        ///    }));
+
+          /// foreach(var item in Result)
+          /// {
+          ///     Console.WriteLine($"Employee :{item.Employee.Name} , Department : {item.Department.Name}");
+          /// }
             #endregion
             #endregion
 
