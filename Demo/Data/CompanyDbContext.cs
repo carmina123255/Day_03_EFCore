@@ -24,9 +24,10 @@ namespace Demo.Data
 
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
+          
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<EmployeesDapartmets> EmployeesDapartmets { get; set; } 
     }
 }

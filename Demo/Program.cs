@@ -1,6 +1,7 @@
 ﻿using Demo.Data;
 using Demo.Data.Models;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Data.Entity;
 using System.Reflection.Emit;
@@ -339,25 +340,30 @@ namespace Demo
 
             #region Cross JOin 
 
-         ///  var Result = from E in dbContext.Employees
-         ///               from D in dbContext.Departments
-         ///               select new
-         ///               {
-         ///                   Department = D,
-         ///                   Employee = E
-         ///               };
+            ///  var Result = from E in dbContext.Employees
+            ///               from D in dbContext.Departments
+            ///               select new
+            ///               {
+            ///                   Department = D,
+            ///                   Employee = E
+            ///               };
 
-        ///    Result = dbContext.Employees.SelectMany(E => dbContext.Departments.Select( D => new
-        ///    {
-        ///       Department=D,
-        ///       Employee=E
-        ///    }));
+            ///    Result = dbContext.Employees.SelectMany(E => dbContext.Departments.Select( D => new
+            ///    {
+            ///       Department=D,
+            ///       Employee=E
+            ///    }));
 
-          /// foreach(var item in Result)
-          /// {
-          ///     Console.WriteLine($"Employee :{item.Employee.Name} , Department : {item.Department.Name}");
-          /// }
+            /// foreach(var item in Result)
+            /// {
+            ///     Console.WriteLine($"Employee :{item.Employee.Name} , Department : {item.Department.Name}");
+            /// }
             #endregion
+            #endregion
+
+            #region MappingView
+            ///  var Result = dbContext.EmployeesDapartmets;
+            ///  foreach(var item in Result) { Console.WriteLine($"Department : {item.DepartmentName}, Employee : {item.EmployeeName}"); } 
             #endregion
 
         }
