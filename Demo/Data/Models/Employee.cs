@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Demo.Data.Models
 {
-    internal class Employee
+    public class Employee
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,9 +25,9 @@ namespace Demo.Data.Models
         public string? Address { get; set; } 
 
         public int? DepartmentDeptId { get; set; }
-        public Department? Department { get; set; }
+        public virtual Department? Department { get; set; }
 
-        public Department? DepartmentManager { get; set; }
+        public virtual Department? DepartmentManager { get; set; }
 
 
         //   public Address? DetailsAddress { get; set; }
